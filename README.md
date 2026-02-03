@@ -87,34 +87,30 @@ picpocket /path/to/photos --dry-run
 
 ### Subcommands
 
+picpocket uses `uv` to manage Python dependencies in an isolated virtual environment. Dependencies are installed automatically on first run.
+
 ```bash
-# Set up with interactive wizard (recommended)
-picpocket setup
+# Set up Python environment and configure settings
+picpocket setup             # Interactive wizard (recommended)
+picpocket setup --yes       # Use defaults, skip wizard
+picpocket setup --force     # Reinstall Python environment
+picpocket setup --model <id>  # Set model directly
 
-# Set up with defaults (skip wizard)
-picpocket setup --yes
-picpocket setup --force         # Reinstall Python environment
-picpocket setup --model <id>    # Set model without wizard
-
-# Reconfigure settings anytime
+# Reconfigure settings
 picpocket configure
 
 # List available CLIP models
 picpocket models
 
-# Remove data to free disk space
-picpocket cleanup          # Preview what will be removed
-picpocket cleanup --yes    # Remove virtual environment (~500MB-2GB)
+# Free up disk space (~500MB-2GB)
+picpocket cleanup           # Preview what will be removed
+picpocket cleanup --yes     # Remove virtual environment
 picpocket cleanup --all --yes  # Remove everything (venv, config, cache)
 
-# Check environment status
-picpocket check
-
-# Show file locations
-picpocket paths
-
-# List current categories
-picpocket categories
+# Diagnostics
+picpocket check             # Environment status
+picpocket paths             # File locations
+picpocket categories        # Current categories
 ```
 
 ## Setup Wizard
@@ -165,86 +161,33 @@ picpocket setup --model laion/CLIP-ViT-H-14-laion2B-s32B-b79K
 
 The selected model is saved to your config file. Models are downloaded from Hugging Face on first use.
 
-## Environment Management
-
-picpocket uses `uv` to manage Python dependencies in an isolated virtual environment. This keeps your system Python clean.
-
-**Automatic setup**: On first run, if uv is installed but the environment isn't set up, picpocket will automatically install dependencies.
-
-**Manual setup**: Run `picpocket setup` to explicitly set up or reinstall the environment.
-
-**Cleanup options**:
-```bash
-# Preview what will be removed (default: venv only)
-picpocket cleanup
-
-# Remove virtual environment (~500MB-2GB)
-picpocket cleanup --yes
-
-# Remove everything
-picpocket cleanup --all --yes
-
-# Remove specific items
-picpocket cleanup --venv --yes     # Just the venv
-picpocket cleanup --config --yes   # Just the config
-picpocket cleanup --cache --yes    # Just the cache
-```
-
 ## Configuration
 
-Create a custom config file:
+picpocket works out of the box with sensible defaults. To customize, create a config file:
 
 ```bash
 picpocket init
 ```
 
-### Config File Format
+### Default Categories
+
+picpocket ships with 5 built-in categories:
+
+| Category | What it matches |
+|----------|-----------------|
+| **People** | Selfies, portraits, group photos, family photos |
+| **Screenshots** | Phone/computer screenshots, chat screenshots, app interfaces |
+| **Documents** | Receipts, tickets, IDs, bills, certificates |
+| **Real_Photos** | Landscapes, food, travel, objects, animals |
+| **Forwards** | Memes, viral images, quotes, graphics, infographics |
+
+### Custom Categories
+
+Override or extend the defaults by editing the config file:
 
 ```yaml
 version: 1
 
-categories:
-  - name: People
-    prompts:
-      - "a photograph of people"
-      - "a selfie photo"
-      - "a family photograph"
-
-  - name: Screenshots
-    prompts:
-      - "a screenshot of a mobile phone screen"
-      - "a screenshot of a computer screen"
-
-  - name: Documents
-    prompts:
-      - "a photograph of a document"
-      - "a photo of a receipt"
-
-  - name: Real_Photos
-    prompts:
-      - "a landscape photograph"
-      - "a photograph of food"
-
-  - name: Forwards
-    prompts:
-      - "a meme image"
-      - "a viral internet meme"
-
-classification:
-  model: openai/clip-vit-large-patch14
-  threshold: 0.0
-  topK: 3
-
-output:
-  mode: copy          # copy | move
-  duplicateHandling: rename  # rename | skip | overwrite
-```
-
-### Custom Categories
-
-Add your own categories by editing the config file:
-
-```yaml
 categories:
   - name: Artwork
     prompts:
@@ -257,15 +200,18 @@ categories:
       - "a photo of a receipt"
       - "a shopping receipt"
       - "a restaurant bill"
+
+classification:
+  model: openai/clip-vit-large-patch14
+  threshold: 0.0   # 0 = classify all, 0.7 = send low-confidence to Review/
+  topK: 3          # prompts to ensemble per category
+
+output:
+  mode: copy                  # copy | move
+  duplicateHandling: rename   # rename | skip | overwrite
 ```
 
-## Default Categories
-
-1. **People** - Selfies, portraits, group photos, family photos
-2. **Screenshots** - Phone/computer screenshots, chat screenshots, app interfaces
-3. **Documents** - Receipts, tickets, IDs, bills, certificates
-4. **Real_Photos** - Landscapes, food, travel, objects, animals
-5. **Forwards** - Memes, viral images, quotes, graphics, infographics
+Each category needs a `name` and a list of `prompts` that describe what images belong there. The more specific your prompts, the better the classification
 
 ## Examples
 
@@ -293,25 +239,6 @@ picpocket ./photos --threshold 0.7
 
 ```bash
 picpocket ./photos --limit 100 --verbose
-```
-
-## Output Structure
-
-```
-output/
-├── People/
-│   ├── IMG_001.jpg
-│   └── IMG_002.jpg
-├── Screenshots/
-│   └── Screenshot_2024.png
-├── Documents/
-│   └── receipt.jpg
-├── Real_Photos/
-│   └── sunset.jpg
-├── Forwards/
-│   └── meme.jpg
-└── Review/          # Only when using --threshold
-    └── unclear.jpg
 ```
 
 ## Development
