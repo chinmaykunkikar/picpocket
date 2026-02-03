@@ -165,35 +165,6 @@ picpocket setup --model laion/CLIP-ViT-H-14-laion2B-s32B-b79K
 
 The selected model is saved to your config file. Models are downloaded from Hugging Face on first use.
 
-## File Locations
-
-picpocket follows platform-specific standards for storing files:
-
-### Linux (XDG Base Directory Specification)
-```
-Config: ~/.config/picpocket/config.yaml
-Data:   ~/.local/share/picpocket/venv
-Cache:  ~/.cache/picpocket
-```
-
-Override with `XDG_CONFIG_HOME`, `XDG_DATA_HOME`, `XDG_CACHE_HOME`.
-
-### macOS
-```
-Config: ~/.config/picpocket/config.yaml
-Data:   ~/Library/Application Support/picpocket/venv
-Cache:  ~/Library/Caches/picpocket
-```
-
-### Windows
-```
-Config: %APPDATA%\picpocket\config.yaml
-Data:   %LOCALAPPDATA%\picpocket\venv
-Cache:  %LOCALAPPDATA%\picpocket\cache
-```
-
-Run `picpocket paths` to see exact locations on your system.
-
 ## Environment Management
 
 picpocket uses `uv` to manage Python dependencies in an isolated virtual environment. This keeps your system Python clean.
