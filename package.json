@@ -38,9 +38,10 @@
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^20.11.30",
     "@types/prompts": "^2.4.9",
+    "@vitest/coverage-v8": "^4.0.18",
     "tsx": "^4.7.1",
     "typescript": "^5.4.3",
-    "vitest": "^1.4.0"
+    "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=18.0.0"
