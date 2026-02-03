@@ -26,7 +26,11 @@ Sorted/
 └── Review/        # low confidence (when using --threshold)
 ```
 
+<div align="center">
+
 [![asciicast](https://asciinema.org/a/JL018lKOkBYymRaQ.svg)](https://asciinema.org/a/JL018lKOkBYymRaQ)
+
+</div>
 
 ## Features
 
