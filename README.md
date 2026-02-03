@@ -17,7 +17,7 @@ A CLI tool to classify images using CLIP. Automatically organizes photos into ca
 
 ### Prerequisites
 
-1. **Node.js** (v18 or later)
+1. **Node.js** (v22 or later)
 2. **uv** - Fast Python package manager
 
 Install uv:
@@ -29,7 +29,7 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/picpocket.git
+git clone https://github.com/chinmaykunkikar/picpocket.git
 cd picpocket
 
 # Install Node.js dependencies
@@ -351,6 +351,12 @@ npm run dev -- /path/to/photos
 
 # Run tests
 npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Run tests with coverage
+npm run test:coverage
 
 # Type check
 npm run typecheck
