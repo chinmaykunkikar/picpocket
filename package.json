@@ -1,0 +1,48 @@
+{
+  "name": "picpocket",
+  "version": "1.0.0",
+  "description": "CLI tool to classify images using CLIP",
+  "type": "module",
+  "bin": {
+    "picpocket": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "image",
+    "classifier",
+    "clip",
+    "photo",
+    "organizer"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^12.1.0",
+    "fast-glob": "^3.3.2",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.0.1",
+    "prompts": "^2.4.2",
+    "yaml": "^2.4.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.11.30",
+    "@types/prompts": "^2.4.9",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.3",
+    "vitest": "^1.4.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
