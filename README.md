@@ -1,17 +1,39 @@
+<div align="center">
+
 # picpocket
 
-A CLI tool to classify images using CLIP. Automatically organizes photos into categories like People, Screenshots, Documents, Real Photos, and Forwards.
+**Sort photos by content, not filename**
+
+[![Tests](https://github.com/chinmaykunkikar/picpocket/actions/workflows/test.yml/badge.svg)](https://github.com/chinmaykunkikar/picpocket/actions/workflows/test.yml)
+[![Node](https://img.shields.io/badge/node-%3E%3D22-brightgreen)](https://nodejs.org/)
+[![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
+</div>
+
+A CLI that uses CLIP to classify images into categories like People, Screenshots, Documents, Real Photos, and Forwards. Works offline on Apple Silicon, NVIDIA, or CPU.
+
+```bash
+picpocket ~/Downloads/camera-roll ~/Pictures/Sorted
+```
+
+```
+Sorted/
+├── People/        # selfies, group photos, portraits
+├── Screenshots/   # phone & computer screenshots
+├── Documents/     # receipts, tickets, IDs
+├── Real_Photos/   # landscapes, food, travel
+├── Forwards/      # memes, viral images
+└── Review/        # low confidence (when using --threshold)
+```
 
 ## Features
 
-- **CLIP-powered classification** - Uses OpenAI's CLIP model for accurate image categorization
-- **Automatic environment setup** - Uses `uv` to manage Python dependencies in an isolated virtual environment
-- **Customizable categories** - Define your own categories and prompts via YAML config
-- **Batch processing** - Efficiently processes entire directories
-- **Dry-run mode** - Preview results before copying files
-- **JSON output** - Scriptable output format for automation
-- **Hardware acceleration** - Automatically uses MPS (Apple Silicon), CUDA (NVIDIA), or CPU
-- **Standards-compliant** - Follows XDG Base Directory Specification (Linux), Apple guidelines (macOS), and AppData conventions (Windows)
+- **CLIP-powered** — Understands what's *in* the image, not just metadata
+- **Hardware accelerated** — Runs on Apple Silicon (MPS), NVIDIA (CUDA), or CPU
+- **Zero config** — Works out of the box with sensible defaults
+- **Customizable** — Define your own categories via YAML
+- **Non-destructive** — Copies by default, preview with `--dry-run`
+- **Scriptable** — JSON output for automation
 
 ## Installation
 
