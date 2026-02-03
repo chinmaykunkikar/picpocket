@@ -26,6 +26,8 @@ Sorted/
 └── Review/        # low confidence (when using --threshold)
 ```
 
+[![asciicast](https://asciinema.org/a/JL018lKOkBYymRaQ.svg)](https://asciinema.org/a/JL018lKOkBYymRaQ)
+
 ## Features
 
 - **CLIP-powered** — Understands what's *in* the image, not just metadata
