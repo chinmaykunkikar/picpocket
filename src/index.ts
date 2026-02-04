@@ -3,7 +3,7 @@
 import { program } from 'commander'
 import chalk from 'chalk'
 import ora from 'ora'
-import * as fs from 'fs-extra'
+import fs from 'fs-extra'
 import { classifyCommand } from './commands/classify.js'
 import {
   loadConfig,

@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import ora from 'ora'
 import * as path from 'path'
-import * as fs from 'fs-extra'
+import fs from 'fs-extra'
 import { loadConfig, categoriesToMap } from '../config/loader.js'
 import { scanForImages } from '../files/scanner.js'
 import { ensureCategoryDirs, copyFiles, type CopyResult } from '../files/copier.js'

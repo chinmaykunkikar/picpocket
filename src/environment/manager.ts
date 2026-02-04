@@ -1,7 +1,7 @@
 import { spawn, execSync } from 'child_process'
 import * as path from 'path'
 import * as nodeFs from 'fs'
-import * as fs from 'fs-extra'
+import fs from 'fs-extra'
 import { fileURLToPath } from 'url'
 import { getAppPaths, getLegacyPaths, type AppPaths } from './paths.js'
 
